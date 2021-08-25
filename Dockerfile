@@ -14,10 +14,6 @@ RUN apt-get update && \
 COPY files/sshd_config /etc/ssh/sshd_config
 COPY files/create-sftp-user /usr/local/bin/
 COPY files/entrypoint /
-RUN mkdir -p /drione/sftp
-RUN ln -s /drione/sftp /data 
-RUN chown root:root /data
-RUN chmod 775 /data
 
 EXPOSE 22
 
