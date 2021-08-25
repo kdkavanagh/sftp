@@ -65,14 +65,13 @@ if [ -n "$gid" ]; then
     useraddOptions+=(--gid "$gid")
 fi
 
-useradd "${useraddOptions[@]}" "$user"
-mkdir -p "/home/$user"
-chown root:root "/home/$user"
-chmod 755 "/home/$user"
+useradd -d $DATA_DIR/$user "${useraddOptions[@]}" "$user"
+mkdir -p "$DATA_DIR/$user"
 
 # Retrieving user id to use it in chown commands instead of the user name
 # to avoid problems on alpine when the user name contains a '.'
 uid="$(id -u "$user")"
+chown -R "$uid:users" "$DATA_DIR/$user"
 
 if [ -n "$pass" ]; then
     echo "$user:$pass" | chpasswd $chpasswdOptions
