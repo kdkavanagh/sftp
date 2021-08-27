@@ -53,8 +53,6 @@ if [ ! -f "$userConfFinalPath" ]; then
         done
     fi
 
-    log "Linking $DATA_DIR to /data"
-    ln -s "$DATA_DIR" /data
 
     # Check that we have users in config
     if [ -f "$userConfFinalPath" ] && [ "$(wc -l < "$userConfFinalPath")" -gt 0 ]; then
